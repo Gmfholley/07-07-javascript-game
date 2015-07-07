@@ -4,7 +4,14 @@ var question1 = {
   possibleAnswers: ["11:59", "11:30", "It is impossible to answer this question.", "12:01"]
 };
 
-var questions = [question1];
+var question2 = {
+  question: "Kerry, Wendy and Sumeet have 12 dinosaurs. Kerry has twice as many as Wendy, and Sumeet has three times as many as Wendy. How many dinosaurs does Sumeet have?",
+  answer: 6,
+  possibleAnswers: [4, 2, 6, 3]
+};
+
+
+var questions = [question1, question2];
 var score = 0;
 
 for (i = 0; i < questions.length; i++){
@@ -29,8 +36,8 @@ for (i = 0; i < questions.length; i++){
     score++;
   }
   else{
-    alert("Wrong answer.")
+    alert("Wrong answer. The correct answer is " + questions[i].answer + ".");
   }
 }
   
-  
+alert("Your final score is " + (score/questions.length) + "%");  
