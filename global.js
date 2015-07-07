@@ -10,8 +10,20 @@ var question2 = {
   possibleAnswers: [4, 2, 6, 3]
 };
 
+var question3 = {
+  question: "|1|2|3|\n|4|5|6|\n|7|8|9|\n\nIn a game of tic-tac-toe, assuming your opponent is a savvy player, what would be a losing first move?",
+  answer: 4,
+  possibleAnswers: [1, 3, 4, 5]
+};
 
-var questions = [question1, question2];
+var question4 = {
+  question: "You have 27 coins, each of them weighing 10 ounces. Except for one, which either weighs 9 or 11 ounces. You have a balance scale. What is the minimum number of weighings to determine which coin is different?",
+  answer: 3,
+  possibleAnswers: [3, 4, 5, 14] 
+};
+
+
+var questions = [question1, question2, question3, question4];
 var score = 0;
 
 for (i = 0; i < questions.length; i++){
@@ -40,4 +52,4 @@ for (i = 0; i < questions.length; i++){
   }
 }
   
-alert("Your final score is " + (score/questions.length) + "%");  
+alert("Your final score is " + ((score/questions.length) * 100) + "%");  
