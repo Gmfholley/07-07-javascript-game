@@ -1,3 +1,4 @@
+// Variable objects for each question storing the question, correct answer and multiple chocies.
 var question1 = {
   question: "A magical jar of jelly beans doubles the number of jelly beans every minute.  The jar is full at noon.  When is it half full?",
   answer: "11:59",
@@ -22,28 +23,50 @@ var question4 = {
   possibleAnswers: [3, 4, 5, 14] 
 };
 
-
-var questions = [question1, question2, question3, question4];
-var score = 0;
-
-for (i = 0; i < questions.length; i++){
-  
+// Creates the questions as a String.
+//
+// question = question object
+//
+// Returns question and multiple choice options as a String.
+function getQuestion(question){
   var directions = "Enter the number corresponding to your answer.";
 
-  var wholeQuestion = directions + "\n\n" + questions[i].question + "\n";
+  var wholeQuestion = directions + "\n\n" + question.question + "\n";
 
-  for (count = 0; count < questions[i].possibleAnswers.length; count++ ){
-    wholeQuestion += "\n " + (count + 1) + ". " + questions[i].possibleAnswers[count];
+  for (count = 0; count < question.possibleAnswers.length; count++ ){
+    wholeQuestion += "\n " + (count + 1) + ". " + question.possibleAnswers[count];
   }
+  return wholeQuestion;
+}
 
-  var answer = parseInt(prompt(wholeQuestion));
+// Sends prompt of question.
+//
+// question = question object
+//
+// Returns user's answer as an Integer corresponding to index of possible answers.
+function askQuestion(question){
+  var answer = parseInt(prompt(getQuestion(question)));
 
-  while (answer < 1 || answer > questions[i].possibleAnswers.length || isNaN(answer)){
+  while (answer < 1 || answer > question.possibleAnswers.length || isNaN(answer)){
     alert("That is not a valid answer.");
     var answer = parseInt(prompt(wholeQuestion));
   } 
+  return answer-1;
+}
+
+// Variable Array of questions to iterate through.
+var questions = [question1, question2, question3, question4];
+// Variable score- Integer starting at 0.
+var score = 0;
+
+// Loop through Array of questions.
+//
+// Update score if answered correctly.
+// Provide correct answer if answered incorrectly.
+for (i = 0; i < questions.length; i++){
+  answer = askQuestion(questions[i]);
   
-  if (questions[i].possibleAnswers[answer-1] === questions[i].answer){
+  if (questions[i].possibleAnswers[answer] === questions[i].answer){
     alert("Congratulations! You picked the correct answer.");
     score++;
   }
@@ -51,5 +74,6 @@ for (i = 0; i < questions.length; i++){
     alert("Wrong answer. The correct answer is " + questions[i].answer + ".");
   }
 }
-  
-alert("Your final score is " + ((score/questions.length) * 100) + "%");  
+
+// Provide final score with percentage.
+alert("Your final score is " + score + "/" + questions.length + "=" + ((score/questions.length) * 100) + "%");  
